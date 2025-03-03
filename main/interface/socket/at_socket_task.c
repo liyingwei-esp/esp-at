@@ -18,7 +18,7 @@
 #include "esp_netif.h"
 #include "nvs_flash.h"
 
-#define AT_SOCKET_RECV_BUFFER_SIZE              256
+#define AT_SOCKET_RECV_BUFFER_SIZE              1024
 #define AT_RING_BUFFER_SIZE                     (8 * 1024)
 
 #ifdef CONFIG_AT_BASE_ON_SOCKET
