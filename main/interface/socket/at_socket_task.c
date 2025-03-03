@@ -18,8 +18,8 @@
 #include "esp_netif.h"
 #include "nvs_flash.h"
 
-#define AT_SOCKET_RECV_BUFFER_SIZE              4096
-#define AT_RING_BUFFER_SIZE                     (16 * 1024)
+#define AT_SOCKET_RECV_BUFFER_SIZE              256
+#define AT_RING_BUFFER_SIZE                     (8 * 1024)
 
 #ifdef CONFIG_AT_BASE_ON_SOCKET
 #include "sys/socket.h"
@@ -210,7 +210,7 @@ static void at_socket_init(void)
     ESP_ERROR_CHECK(esp_netif_get_ip_info(ap_if, &ip));
     printf("softap: (%s) started, listen on (" IPSTR ":%d)\r\n", config.ap.ssid, IP2STR(&ip.ip), CONFIG_AT_SOCKET_PORT);
 
-    xTaskCreate(&socket_task, "socket_task", 8192, NULL, 5, NULL);
+    xTaskCreate(&socket_task, "socket_task", 4096, NULL, 5, NULL);
 }
 
 void at_interface_init(void)
