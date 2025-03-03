@@ -176,7 +176,7 @@ static void at_uart_init(void)
     g_at_cmd_port = g_uart_port_pin.number;
 
     // install uart driver
-    uart_driver_install(g_at_cmd_port, 1024*16, 8192, 100, &s_at_uart_queue, 0);
+    uart_driver_install(g_at_cmd_port, 1024*8, 8192, 300, &s_at_uart_queue, 0);
 
     // set uart configuration
     uart_config_t config;
@@ -199,7 +199,7 @@ static void at_uart_init(void)
            g_at_cmd_port, g_uart_port_pin.tx_pin, g_uart_port_pin.rx_pin,
            g_uart_port_pin.cts_pin, g_uart_port_pin.rts_pin, config.baud_rate);
 
-    xTaskCreate(at_uart_task, "uTask", 2048, NULL, 1, NULL);
+    xTaskCreate(at_uart_task, "uTask", 4096, NULL, 1, NULL);
 }
 
 void at_uart_transmit_mode_switch_cb(esp_at_status_type status)
