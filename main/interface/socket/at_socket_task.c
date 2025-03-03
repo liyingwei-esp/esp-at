@@ -210,7 +210,7 @@ static void at_socket_init(void)
     ESP_ERROR_CHECK(esp_netif_get_ip_info(ap_if, &ip));
     printf("softap: (%s) started, listen on (" IPSTR ":%d)\r\n", config.ap.ssid, IP2STR(&ip.ip), CONFIG_AT_SOCKET_PORT);
 
-    xTaskCreate(&socket_task, "socket_task", 4096, NULL, 5, NULL);
+    xTaskCreate(&socket_task, "socket_task", 8192, NULL, 5, NULL);
 }
 
 void at_interface_init(void)
